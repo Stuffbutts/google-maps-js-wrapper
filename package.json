@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Wrappers for google javascript API",
   "license": "MIT",
+  "private": true,
   "files": [
     "*.md",
     "*.js",
