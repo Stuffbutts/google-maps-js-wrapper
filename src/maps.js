@@ -25,6 +25,8 @@ class Maps {
         this.options = options;
 
         this.setMap(new google.maps.Map(this.mapElm, this.options));
+
+        return this.map;
     }
 
     setMap(map){
