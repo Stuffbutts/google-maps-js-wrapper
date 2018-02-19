@@ -27,7 +27,7 @@
     "webpack": "3.10.0"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack src/index.js dist/GoogleApi.js",
-    "build:dev": "cross-env NODE_ENV=development webpack src/index.js dist/GoogleApi.js"
+    "build": "cross-env NODE_ENV=production webpack",
+    "build:dev": "cross-env NODE_ENV=development webpack"
   }
 }
