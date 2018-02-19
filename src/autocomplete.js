@@ -34,7 +34,9 @@ class Autocomplete {
         this.autocomplete = new google.maps.places.Autocomplete(
             inputElm,
             this.options
-        )
+        );
+
+        return this.autocomplete;
     }
 
     addListener(event, callback){
