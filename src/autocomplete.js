@@ -23,7 +23,7 @@ class Autocomplete {
 
     }
 
-    static getAutocomplete() {
+    getAutocomplete() {
         return this.autocomplete;
     }
 

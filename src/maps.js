@@ -20,7 +20,7 @@ class Maps {
         }
     }
 
-    static getMap(){
+    getMap(){
         return this.map;
     }
 
