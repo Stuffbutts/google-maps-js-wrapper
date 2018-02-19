@@ -7,9 +7,15 @@ class Autocomplete {
 
     constructor(inputElm, options){
         const autocompleteOptions = {...defaultOptions, ...options};
+        let node;
 
         if(inputElm){
-            this.createAutocomplete(inputElm, autocompleteOptions);
+            if(typeof inputElm === "string"){
+                node = document.getElementById(inputElm);
+            } else {
+                node = inputElm;
+            }
+            this.createAutocomplete(node, autocompleteOptions);
         } else {
             this.options = autocompleteOptions;
         }
