@@ -89,6 +89,10 @@ class Maps {
         this.markers = markerArray;
     }
 
+    point(x,y){
+        return new google.maps.Point(x,y);
+    }
+
     dropMarker(i){
         const that = this;
         i = !i ? 0 : i;
