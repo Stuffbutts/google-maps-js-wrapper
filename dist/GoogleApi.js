@@ -132,17 +132,6 @@ var Google = function () {
 
     _createClass(Google, null, [{
         key: 'Size',
-
-
-        // constructor(){
-        //     this.Maps = Maps;
-        //     this.Places = Places;
-        //     this.Autocomplete = Autocomplete;
-        //     this.search = search;
-        //
-        //     return this;
-        // }
-
         value: function Size(w, h, wunit, hunit) {
             return new google.maps.Size(w, h, wunit, hunit);
         }
