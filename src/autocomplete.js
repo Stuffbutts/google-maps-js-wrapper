@@ -1,9 +1,9 @@
 const defaultOptions = {};
 
 class Autocomplete {
-    static inputElm;
-    static options;
-    static autocomplete;
+    inputElm;
+    options;
+    autocomplete;
 
     constructor(inputElm, options){
         const autocompleteOptions = {...defaultOptions, ...options};
@@ -19,12 +19,12 @@ class Autocomplete {
         } else {
             this.options = autocompleteOptions;
         }
+        
+        // this.getAutocomplete = this.getAutocomplete.bind(this);
+        // this.addListener = this.addListener.bind(this);
+        // this.getPlace = this.getPlace.bind(this);
 
-
-    }
-
-    getAutocomplete() {
-        return this.autocomplete;
+        return this;
     }
 
     createAutocomplete(inputElm, options){
@@ -44,7 +44,7 @@ class Autocomplete {
     }
 
     addListener(event, callback){
-        this.autocomplete.addListener(event, callback);
+        return this.autocomplete.addListener(event, callback);
     }
 
     getPlace(){

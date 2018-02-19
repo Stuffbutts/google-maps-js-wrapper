@@ -1,2 +1,466 @@
-!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.GoogleApi=t():e.GoogleApi=t()}("undefined"!=typeof self?self:this,function(){return function(e){function t(o){if(n[o])return n[o].exports;var r=n[o]={i:o,l:!1,exports:{}};return e[o].call(r.exports,r,r.exports,t),r.l=!0,r.exports}var n={};return t.m=e,t.c=n,t.d=function(e,n,o){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:o})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p="",t(t.s=0)}([function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var o=n(1),r=function(e){return e&&e.__esModule?e:{default:e}}(o);t.default=r.default},function(e,t,n){"use strict";function o(e){return e&&e.__esModule?e:{default:e}}function r(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(t,"__esModule",{value:!0});var a=n(2),i=o(a),u=n(3),l=o(u),s=n(4),c=o(s),f=n(5),p=o(f),d=function e(){r(this,e),this.Maps=i.default,this.Places=c.default,this.Autocomplete=l.default,this.search=p.default},h=new d;t.default=h},function(e,t,n){"use strict";function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(t,"__esModule",{value:!0});var r="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},a=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o])}return e},i=function(){function e(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}return function(t,n,o){return n&&e(t.prototype,n),o&&e(t,o),t}}(),u={},l={},s=function(){function e(t){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:u;o(this,e),this.markers=[],t&&n&&this.createMap(t,n)}return i(e,[{key:"getMap",value:function(){return this.map}},{key:"createMap",value:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:u;return this.mapElm=e,this.options=t,this.setMap(new google.maps.Map(this.mapElm,this.options)),this.map}},{key:"setMap",value:function(e){this.map=e}},{key:"clearMap",value:function(){this.mapElm.parentNode.removeChild(this.mapElm),this.map=null}},{key:"latLngBounds",value:function(e,t){return new google.maps.LatLngBounds(e,t)}},{key:"latLng",value:function(e,t){return new google.maps.LatLng(e,t)}},{key:"addMarker",value:function(e,t,n){var o=void 0,i=void 0,u=void 0,s=void 0,c=this.markers;!n&&this.map?this.map:n&&(this.setMap(n),this.addMarker(t));var f=t.label;s="string"==typeof f?a({text:f},l.label):"object"!==(void 0===f?"undefined":r(f))||Array.isArray(f)?a({},l.label):a({},f,l.label),i=a({},l,t,{label:a({},s)}),u=new google.maps.Marker(i),u.setPlace({location:e.geometry.location,placeId:e.id}),o=c.concat(u),this.markers=o}},{key:"point",value:function(e,t){return new google.maps.Point(e,t)}},{key:"dropMarker",value:function(e){var t=this;return e=e||0,function(){t.markers[e].setMap(t.map)}}},{key:"dropAllMarkers",value:function(){var e=this;e.markers.forEach(function(t,n){setTimeout(e.dropMarker(n),100*n)})}},{key:"clearMarkers",value:function(){this.markers.forEach(function(e){e.setMap(null)}),this.markers=[]}},{key:"clearMarker",value:function(e){var t=this.markers.reduce(function(t,n){return n.id===e&&(t=n),t},{}),n=this.markers.filter(function(t){return t.id!==e});t.setMap(null),this.markers=n}},{key:"drawSearchRadius",value:function(e,t){var n=this.map,o={map:n};t||n.getCenter(),new google.maps.Circle(a({},o,e))}}]),e}();t.default=s},function(e,t,n){"use strict";function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(t,"__esModule",{value:!0});var r=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o])}return e},a=function(){function e(e,t){for(var n=0;n<t.length;n++){var o=t[n];o.enumerable=o.enumerable||!1,o.configurable=!0,"value"in o&&(o.writable=!0),Object.defineProperty(e,o.key,o)}}return function(t,n,o){return n&&e(t.prototype,n),o&&e(t,o),t}}(),i={},u=function(){function e(t,n){o(this,e);var a=r({},i,n),u=void 0;t?(u="string"==typeof t?document.getElementById(t):t,this.createAutocomplete(u,a)):this.options=a}return a(e,[{key:"getAutocomplete",value:function(){return this.autocomplete}},{key:"createAutocomplete",value:function(e,t){if(!e)throw new Error("input element required");return this.inputElm=e,this.options=this.options?r({},this.options,t):t,this.autocomplete=new google.maps.places.Autocomplete(e,this.options),this.autocomplete}},{key:"addListener",value:function(e,t){this.autocomplete.addListener(e,t)}},{key:"getPlace",value:function(){return this.autocomplete.getPlace()}}]),e}();t.default=u},function(e,t,n){"use strict";function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(t,"__esModule",{value:!0});var r=function e(t){o(this,e),this.places=new google.maps.places.PlacesService(t)};t.default=r},function(e,t,n){"use strict";function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}Object.defineProperty(t,"__esModule",{value:!0});var r=function e(){o(this,e)};t.default=r}])});
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["GoogleApi"] = factory();
+	else
+		root["GoogleApi"] = factory();
+})(typeof self !== 'undefined' ? self : this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _google = __webpack_require__(1);
+
+var _google2 = _interopRequireDefault(_google);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _google2.default;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _maps = __webpack_require__(2);
+
+var _maps2 = _interopRequireDefault(_maps);
+
+var _autocomplete = __webpack_require__(3);
+
+var _autocomplete2 = _interopRequireDefault(_autocomplete);
+
+var _places = __webpack_require__(4);
+
+var _places2 = _interopRequireDefault(_places);
+
+var _search = __webpack_require__(5);
+
+var _search2 = _interopRequireDefault(_search);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Google = function () {
+    function Google() {
+        _classCallCheck(this, Google);
+    }
+
+    _createClass(Google, null, [{
+        key: 'Size',
+
+
+        // constructor(){
+        //     this.Maps = Maps;
+        //     this.Places = Places;
+        //     this.Autocomplete = Autocomplete;
+        //     this.search = search;
+        //
+        //     return this;
+        // }
+
+        value: function Size(w, h, wunit, hunit) {
+            return new google.maps.Size(w, h, wunit, hunit);
+        }
+    }]);
+
+    return Google;
+}();
+
+Google.Maps = _maps2.default;
+Google.Places = _places2.default;
+Google.Autocomplete = _autocomplete2.default;
+Google.search = _search2.default;
+exports.default = Google;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var mapDefaults = {};
+
+var markerDefaults = {};
+
+var Maps = function () {
+    function Maps(ele) {
+        var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : mapDefaults;
+
+        _classCallCheck(this, Maps);
+
+        this.markers = [];
+
+        if (ele && options) {
+            this.createMap(ele, options);
+        }
+
+        return this;
+    }
+
+    _createClass(Maps, [{
+        key: "createMap",
+        value: function createMap(ele) {
+            var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : mapDefaults;
+
+            this.mapElm = ele;
+            this.options = options;
+
+            this.setMap(new google.maps.Map(this.mapElm, this.options));
+
+            return this.map;
+        }
+    }, {
+        key: "setMap",
+        value: function setMap(map) {
+            this.map = map;
+        }
+    }, {
+        key: "clearMap",
+        value: function clearMap() {
+            this.mapElm.parentNode.removeChild(this.mapElm);
+            this.map = null;
+        }
+    }, {
+        key: "latLngBounds",
+        value: function latLngBounds(se, nw) {
+            return new google.maps.LatLngBounds(se, nw);
+        }
+    }, {
+        key: "latLng",
+        value: function latLng(lat, lng) {
+            return new google.maps.LatLng(lat, lng);
+        }
+    }, {
+        key: "addMarker",
+        value: function addMarker(result, options, map) {
+            var mapObj = void 0,
+                markerArray = void 0,
+                markerOptions = void 0,
+                marker = void 0,
+                labelOptions = void 0,
+                currentMarkers = this.markers;
+
+            if (!map && this.map) {
+                mapObj = this.map;
+            } else if (map) {
+                this.setMap(map);
+                this.addMarker(options);
+            }
+
+            var label = options.label;
+
+
+            if (typeof label === "string") {
+                // If label is a string, use the string as the label text
+                labelOptions = _extends({
+                    text: label
+                }, markerDefaults.label);
+            } else if ((typeof label === "undefined" ? "undefined" : _typeof(label)) === "object" && !Array.isArray(label)) {
+                // Otherwise if label is an object, merge with the default configuration
+                labelOptions = _extends({}, label, markerDefaults.label);
+            } else {
+                // Otherwise, use the default options
+                labelOptions = _extends({}, markerDefaults.label);
+            }
+
+            markerOptions = _extends({}, markerDefaults, options, { label: _extends({}, labelOptions) });
+
+            marker = new google.maps.Marker(markerOptions);
+
+            marker.setPlace({
+                location: result.geometry.location,
+                placeId: result.id
+            });
+
+            markerArray = currentMarkers.concat(marker);
+
+            this.markers = markerArray;
+        }
+    }, {
+        key: "point",
+        value: function point(x, y) {
+            return new google.maps.Point(x, y);
+        }
+    }, {
+        key: "dropMarker",
+        value: function dropMarker(i) {
+            var that = this;
+            i = !i ? 0 : i;
+            return function () {
+                that.markers[i].setMap(that.map);
+            };
+        }
+    }, {
+        key: "dropAllMarkers",
+        value: function dropAllMarkers() {
+            var that = this;
+            that.markers.forEach(function (v, k) {
+                setTimeout(that.dropMarker(k), 100 * k);
+            });
+        }
+    }, {
+        key: "clearMarkers",
+        value: function clearMarkers() {
+            this.markers.forEach(function (v) {
+                v.setMap(null);
+            });
+
+            this.markers = [];
+        }
+    }, {
+        key: "clearMarker",
+        value: function clearMarker(id) {
+            var marker = this.markers.reduce(function (acc, val) {
+                if (val.id === id) {
+                    acc = val;
+                }
+
+                return acc;
+            }, {});
+
+            var filteredMarkers = this.markers.filter(function (v) {
+                return v.id !== id;
+            });
+
+            marker.setMap(null);
+
+            this.markers = filteredMarkers;
+        }
+    }, {
+        key: "drawSearchRadius",
+        value: function drawSearchRadius(options, location) {
+            var map = this.map;
+            var defaultOptions = {
+                map: map
+            };
+            var center = location || map.getCenter();
+            var circle = new google.maps.Circle(_extends({}, defaultOptions, options));
+        }
+    }]);
+
+    return Maps;
+}();
+
+exports.default = Maps;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var defaultOptions = {};
+
+var Autocomplete = function () {
+    function Autocomplete(inputElm, options) {
+        _classCallCheck(this, Autocomplete);
+
+        var autocompleteOptions = _extends({}, defaultOptions, options);
+        var node = void 0;
+
+        if (inputElm) {
+            if (typeof inputElm === "string") {
+                node = document.getElementById(inputElm);
+            } else {
+                node = inputElm;
+            }
+            this.createAutocomplete(node, autocompleteOptions);
+        } else {
+            this.options = autocompleteOptions;
+        }
+
+        // this.getAutocomplete = this.getAutocomplete.bind(this);
+        // this.addListener = this.addListener.bind(this);
+        // this.getPlace = this.getPlace.bind(this);
+
+        return this;
+    }
+
+    _createClass(Autocomplete, [{
+        key: "createAutocomplete",
+        value: function createAutocomplete(inputElm, options) {
+            if (!inputElm) {
+                throw new Error('input element required');
+            }
+
+            this.inputElm = inputElm;
+            // some options are set in constructor so if options are passed, merge the options with the current options
+            this.options = this.options ? _extends({}, this.options, options) : options;
+            this.autocomplete = new google.maps.places.Autocomplete(inputElm, this.options);
+
+            return this.autocomplete;
+        }
+    }, {
+        key: "addListener",
+        value: function addListener(event, callback) {
+            return this.autocomplete.addListener(event, callback);
+        }
+    }, {
+        key: "getPlace",
+        value: function getPlace() {
+            return this.autocomplete.getPlace();
+        }
+    }]);
+
+    return Autocomplete;
+}();
+
+exports.default = Autocomplete;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var defaultOptions = {};
+
+var Places = function Places(map) {
+    _classCallCheck(this, Places);
+
+    this.places = new google.maps.places.PlacesService(map);
+};
+
+exports.default = Places;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var defaultOptions = {};
+
+var Search = function Search() {
+    _classCallCheck(this, Search);
+};
+
+exports.default = Search;
+
+/***/ })
+/******/ ]);
+});
 //# sourceMappingURL=GoogleApi.js.map

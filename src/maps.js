@@ -7,10 +7,10 @@ const markerDefaults = {
 };
 
 class Maps {
-    static mapElm;
-    static map;
-    static options;
-    static markers;
+    mapElm;
+    map;
+    options;
+    markers;
 
     constructor(ele, options = mapDefaults){
         this.markers = [];
@@ -18,10 +18,8 @@ class Maps {
         if(ele && options){
             this.createMap(ele, options);
         }
-    }
 
-    getMap(){
-        return this.map;
+        return this;
     }
 
     createMap(ele, options = mapDefaults){

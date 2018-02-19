@@ -4,19 +4,14 @@ import Places from './places';
 import search from './search';
 
 class Google {
-    static Maps;
-    static Places;
-    static Autocomplete;
-    static search;
+    static Maps = Maps;
+    static Places = Places;
+    static Autocomplete = Autocomplete;
+    static search = search;
 
-    constructor(){
-        this.Maps = Maps;
-        this.Places = Places;
-        this.Autocomplete = Autocomplete;
-        this.search = search;
+    static Size(w,h,wunit, hunit){
+        return new google.maps.Size(w,h,wunit,hunit)
     }
 }
 
-const instance = new Google();
-
-export default instance;
+export default Google;
