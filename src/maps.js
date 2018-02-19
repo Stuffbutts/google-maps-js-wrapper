@@ -20,6 +20,10 @@ class Maps {
         }
     }
 
+    static getMap(){
+        return this.map;
+    }
+
     createMap(ele, options = mapDefaults){
         this.mapElm = ele;
         this.options = options;

@@ -23,6 +23,10 @@ class Autocomplete {
 
     }
 
+    static getAutocomplete() {
+        return this.autocomplete;
+    }
+
     createAutocomplete(inputElm, options){
         if(!inputElm){
             throw new Error('input element required');
