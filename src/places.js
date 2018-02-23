@@ -2,8 +2,11 @@ const defaultOptions = {
 
 };
 
+const placesServiceStatus = () => google.maps.places.PlacesServiceStatus;
+
 class Places {
-    static places;
+    places;
+    static PlacesServiceStatus = placesServiceStatus();
 
     constructor(map){
         this.places = new google.maps.places.PlacesService(map);

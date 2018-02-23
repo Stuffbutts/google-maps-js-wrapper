@@ -4,9 +4,10 @@
   "description": "Wrappers for google javascript API",
   "license": "MIT",
   "private": true,
-  "repository" : { 
-  	"type" : "git",
-    "url" : "https://github.com/Stuffbutts/google-maps-js-wrapper.git"
+  "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Stuffbutts/google-maps-js-wrapper.git"
   },
   "files": [
     "*.md",
@@ -16,6 +17,7 @@
   ],
   "main": "dist/GoogleApi.js",
   "devDependencies": {
+    "@types/googlemaps": "^3.30.7",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -29,5 +31,11 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
     "build:dev": "cross-env NODE_ENV=development webpack"
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   }
 }
