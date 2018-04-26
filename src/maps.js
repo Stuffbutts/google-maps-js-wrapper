@@ -146,6 +146,13 @@ class Maps {
         const center = location || map.getCenter();
         const circle = new google.maps.Circle({...defaultOptions, ...options});
     }
+
+    setZoom(zoom) {
+        const map = this.map;
+        if (typeof zoom === "number"){
+            map.setZoom(zoom);
+        }
+    }
 }
 
 export default Maps;
